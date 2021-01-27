@@ -1,31 +1,33 @@
 <template>
   <div id="app">
     <div class="cart">
-      <p>Carrinho: {{cart.length}}</p>
+      <p>Carrinho: {{ cart.length }}</p>
     </div>
     <product :premium="premium" v-on:add-to-cart="updateCart"></product>
+    <grupo5></grupo5>
   </div>
 </template>
 
 <script>
-import Product from './components/Product.vue'
+import ProductRelogio from "./components/ProductRelogio.vue";
+import Grupo5 from "./components/Grupo5.vue";
 export default {
   name: "App",
   data() {
     return {
       premium: false,
-      cart: []
-    }
+      cart: [],
+    };
   },
   components: {
-    product: Product
+    product: ProductRelogio,
+    grupo5: Grupo5
   },
   methods: {
-    updateCart(id){
-      this.cart.push(id)
-    }
-  }
-
+    updateCart(id) {
+      this.cart.push(id);
+    },
+  },
 };
 </script>
 
