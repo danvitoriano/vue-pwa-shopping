@@ -4,11 +4,13 @@
       <p>Carrinho: {{cart.length}}</p>
     </div>
     <product :premium="premium" v-on:add-to-cart="updateCart"></product>
+    <grupo4 :premium="premium" v-on:add-to-cart="updateCart"></grupo4>
   </div>
 </template>
 
 <script>
 import Product from './components/Product.vue'
+import Grupo4 from './components/Grupo4.vue'
 export default {
   name: "App",
   data() {
@@ -18,9 +20,10 @@ export default {
     }
   },
   components: {
-    product: Product
+    product: Product,
+    grupo4: Grupo4
   },
-  methods: {
+    methods: {
     updateCart(id){
       this.cart.push(id)
     }
