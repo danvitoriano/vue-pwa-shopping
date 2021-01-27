@@ -4,11 +4,13 @@
       <p>Carrinho: {{cart.length}}</p>
     </div>
     <product :premium="premium" v-on:add-to-cart="updateCart"></product>
+    <my-list :premium="premium" v-on:add-to-cart="updateCart"></my-list>
   </div>
 </template>
 
 <script>
 import Product from './components/Product.vue'
+import myList from './components/myList.vue'
 export default {
   name: "App",
   data() {
@@ -18,7 +20,8 @@ export default {
     }
   },
   components: {
-    product: Product
+    product: Product,
+    myList: myList
   },
   methods: {
     updateCart(id){
