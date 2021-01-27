@@ -3,7 +3,7 @@
 
     <div class="product-image">
       <img
-        src="../assets/apple_watch_01.jpg"
+        :src="selectedImage"
         title="imagem de apple watch"
       />
     </div>
@@ -27,14 +27,20 @@
       <div
         class="color-box"
         :style="{backgroundColor: variant.variantColor}"
-        v-for="variant in variants"
+        v-for="(variant, index) in variants"
         :key="variant.variantId"
-        v-on:click="setImage"
-      >
+        v-on:mouseover="setImage(index)"
+        :class="{selectedBox: index === selectedVariant}">
         <p>{{variant.variantColor}}</p>
       </div>
 
-      <button v-on:click="addToCart">Adicionar ao carrinho</button>
+      <cep-search v-if="inStock"></cep-search>
+
+      <button 
+        :disabled="!inStock"
+        :class="{disabledButton: !inStock}"
+        v-on:click="addToCart">Adicionar ao carrinho
+      </button>
       
     </div>
 
@@ -54,17 +60,21 @@
 </template>
 
 <script>
+import CepSearch from './CepSearch.vue';
 export default {
   name: "grupo4",
-  data() {
+  data()
+    {
     return {
       product: "Apple Watch",
       brand: "Fiap",
       inStock: true,
       selectedVariant: 0,
-      selectedImage: '../assets/apple_watch_01.jpg',
+      selectedImage: require('../assets/apple_watch_01.jpg'),
       shipping: "Grátis",
       reviews: [],
+      cep: "",
+      dataCep: "",
       alt: "imagem de apple watch",
       details: ["bluetooth", "44mm", "GPS"],
       variants: [
@@ -72,34 +82,36 @@ export default {
           variantId: 0,
           variantColor: "black",
           variantImage:
-          "../assets/apple_watch_01.jpg",
+          "apple_watch_01.jpg",
           variantQuantity: 5
         },
         {
           variantId: 1,
-          variantColor: "pink",
+          variantColor: "white",
           variantImage:
-          "../assets/apple_watch_02.jpg",
-          variantQuantity: 10
+          "apple_watch_02.jpg",
+          variantQuantity: 5
         },
         {
           variantId: 2,
-          variantColor: "white",
+          variantColor: "pink",
           variantImage:
-          "../assets/apple_watch_03.jpg",
-          variantQuantity: 5
+          "apple_watch_03.jpg",
+          variantQuantity: 10
         }
       ]
     };
   },
+  components: {
+      'cep-search': CepSearch,
+  },
   methods: {
       addToCart: function() {
-          console.log("ddd")
-          this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
+        this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
       },
-      setImage: function() {
-        this.selectedVariant = this.variants[this.selectedVariant].variantId
-          this.$emit("setimage", this.variants[this.selectedVariant].variantId)
+      setImage: function(index) {
+        this.selectedVariant = index;
+        this.selectedImage = require('../assets/' + this.variants[this.selectedVariant].variantImage)
       }
   }
 };
@@ -142,6 +154,15 @@ img {
   width: 40px;
   height: 40px;
   margin-top: 5px;
+  border-radius: 5px;
+}
+.color-box:hover {
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+.selectedBox {
+  border: 2px solid gray;
+  border-radius: 5px;
 }
 
 .cart {

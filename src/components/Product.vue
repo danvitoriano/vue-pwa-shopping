@@ -3,7 +3,7 @@
 
     <div class="product-image">
       <img
-        src="https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg"
+        :src="selectedImage"
         title="imagem de meias"
       />
     </div>
@@ -27,13 +27,18 @@
       <div
         class="color-box"
         :style="{backgroundColor: variant.variantColor}"
-        v-for="variant in variants"
+        v-for="(variant, index) in variants"
         :key="variant.variantId"
-      >
+        v-on:mouseover="setImage(index)"
+        :class="{selectedBox: index === selectedVariant}">
         <p>{{variant.variantColor}}</p>
       </div>
 
-      <button v-on:click="addToCart">Adicionar ao carrinho</button>
+      <button 
+        :disabled="!inStock"
+        :class="{disabledButton: !inStock}"
+        v-on:click="addToCart">Adicionar ao carrinho
+      </button>
       
     </div>
 
@@ -61,6 +66,7 @@ export default {
       brand: "Fiap",
       inStock: false,
       selectedVariant: 0,
+      selectedImage: 'https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg',
       shipping: "Grátis",
       reviews: [],
       alt: "imagem de meias",
@@ -85,8 +91,11 @@ export default {
   },
   methods: {
       addToCart: function() {
-          console.log("ddd")
           this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
+      },
+      setImage: function(index) {
+        this.selectedVariant = index
+        this.selectedImage = this.variants[this.selectedVariant].variantImage
       }
   }
 };
@@ -125,10 +134,20 @@ img {
   flex-basis: 500px;
 }
 
+
 .color-box {
   width: 40px;
   height: 40px;
   margin-top: 5px;
+  border-radius: 5px;
+}
+.color-box:hover {
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+.selectedBox {
+  border: 2px solid gray;
+  border-radius: 5px;
 }
 
 .cart {
