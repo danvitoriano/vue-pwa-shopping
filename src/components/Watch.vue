@@ -30,10 +30,10 @@
         v-for="variant in variants"
         :key="variant.variantId"
       >
-        <p>{{variant.variantColor}}</p>
+        <p @mouseover="mouseOver">{{variant.variantColor}}</p>
       </div>
 
-      <button v-on:click="addToCart">Adicionar ao carrinho</button>
+      <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button>
       
     </div>
 
@@ -62,6 +62,7 @@ export default {
       inStock: false,
       selectedVariant: 0,
       shipping: "Grátis",
+      buttonState: "active",
       reviews: [],
       alt: "imagem de relógios",
       details: ["Titanium", "Pulseira esportiva", "Gender-neutral"],
@@ -87,6 +88,9 @@ export default {
       addToCart: function() {
           console.log("ddd")
           this.$emit("add-to-cart-with-watch", this.variants[this.selectedVariant].variantId)
+      },
+      mouseOver: function(){
+            this.buttonState = "";   
       }
   }
 

@@ -4,7 +4,7 @@
       <p>Carrinho: {{cart.length}}</p>
     </div>
     <product :premium="premium" v-on:add-to-cart="updateCart"></product>
-    <watch :premium="premium" v-on:add-to-cart-with-watch="updateCartWithWatch"></watch>
+    <watch :premium="premium" v-on:add-to-cart-with-watch="updateCart"></watch>
   </div>
 </template>
 
@@ -26,9 +26,6 @@ export default {
   },
   methods: {
     updateCart(id){
-      this.cart.push(id)
-    },
-    updateCartWithWatch(id){
       this.cart.push(id)
     }
 
