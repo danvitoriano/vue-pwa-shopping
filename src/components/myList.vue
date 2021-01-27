@@ -25,6 +25,7 @@
       <h3>Cores</h3>
 
       <div
+      v-on:mouseover="changeVariant"
         class="color-box"
         :style="{backgroundColor: variant.variantColor}"
         v-for="variant in variants"
@@ -87,7 +88,11 @@ export default {
       addToCart: function() {
           console.log("ddd")
           this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
+      },
+      changeVariant: function() {
+          this.$emit("change-variant", this.variants[this.selectedVariant].variantId)
       }
+      
   }
 };
 </script>
