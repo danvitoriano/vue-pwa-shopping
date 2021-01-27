@@ -73,8 +73,6 @@ export default {
       selectedImage: require('../assets/apple_watch_01.jpg'),
       shipping: "Grátis",
       reviews: [],
-      cep: "",
-      dataCep: "",
       alt: "imagem de apple watch",
       details: ["bluetooth", "44mm", "GPS"],
       variants: [
