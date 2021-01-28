@@ -23,7 +23,7 @@ export default {
   },
   components: {
     product: Product,
-    grupo4: Grupo4
+    grupo4: Grupo4,
     watch: Watch
   },
     methods: {
