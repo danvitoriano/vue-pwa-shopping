@@ -139,6 +139,11 @@ img {
   flex-basis: 700px;
 }
 
+.product-image > img {
+  flex-basis: 700px;
+  border-radius: 30%;
+}
+
 .product-info {
   margin-top: 10px;
   flex-basis: 500px;
