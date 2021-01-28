@@ -34,6 +34,8 @@
         <p>{{variant.variantColor}}</p>
       </div>
 
+      <shirt-size></shirt-size>
+
       <button 
         :disabled="!inStock"
         :class="{disabledButton: !inStock}"
@@ -58,7 +60,9 @@
 </template>
 
 <script>
+import ShirtSize from './ShirtSize.vue';
 export default {
+  components: { ShirtSize },
    name: "shirt",
    data() {
     return {
