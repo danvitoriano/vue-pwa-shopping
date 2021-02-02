@@ -3,7 +3,7 @@
     <div class="cart">
       <p>Carrinho: {{ cart.length }}</p>
     </div>
-    <product :premium="premium" v-on:add-to-cart="updateCart"></product>
+    <product :premium="false" v-on:add-to-cart="updateCart"></product>
     <grupo4 :premium="premium" v-on:add-to-cart="updateCart"></grupo4>
     <watch :premium="premium" v-on:add-to-cart-with-watch="updateCart"></watch>
     <productRelogio :premium="premium" v-on:add-to-cart="updateCart"></productRelogio>
@@ -24,7 +24,6 @@ export default {
   name: "App",
   data() {
     return {
-      premium: false,
       cart: [],
     };
   },
