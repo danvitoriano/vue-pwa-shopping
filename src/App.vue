@@ -3,6 +3,7 @@
     <div class="cart">
       <p>Carrinho: {{ cart.length }}</p>
     </div>
+    <FiltrarFotos msg="Fiap Vue Pics" />
     <product :premium="false" v-on:add-to-cart="updateCart"></product>
     <grupo4 :premium="premium" v-on:add-to-cart="updateCart"></grupo4>
     <watch :premium="premium" v-on:add-to-cart-with-watch="updateCart"></watch>
@@ -19,11 +20,13 @@ import Watch from './components/Watch.vue';
 import ProductRelogio from "./components/ProductRelogio.vue";
 import Grupo5 from "./components/Grupo5.vue";
 import Shirt from './components/Shirt.vue';
+import FiltrarFotos from './components/FiltrarFotos'
 
 export default {
   name: "App",
   data() {
     return {
+      premium: true,
       cart: [],
     };
   },
@@ -33,7 +36,8 @@ export default {
     watch: Watch,
     productRelogio: ProductRelogio,
     grupo5: Grupo5,
-    shirt: Shirt
+    shirt: Shirt,
+    FiltrarFotos
   },
   methods: {
     updateCart(id) {

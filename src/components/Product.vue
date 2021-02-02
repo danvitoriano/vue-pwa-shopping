@@ -75,8 +75,8 @@ export default {
   },
   props: { // as props permitem q o componente receba propriedades externas e estas sejam usadas dentro dele
     premium: { // interfaces das propriedades
-      type: Boolean, 
-      required: true
+      type: Boolean, // pode receber o tipo
+      required: true // se é obrigatória
     }
   },
   data() { // todos os tipos de propriedades, atributos, variaveis a serem manipuladas pelo componente
