@@ -1,41 +1,46 @@
 <template>
   <div id="app">
     <div class="cart">
-      <p>Carrinho: {{cart.length}}</p>
+      <p>Carrinho: {{ cart.length }}</p>
     </div>
     <product :premium="premium" v-on:add-to-cart="updateCart"></product>
     <grupo4 :premium="premium" v-on:add-to-cart="updateCart"></grupo4>
     <watch :premium="premium" v-on:add-to-cart-with-watch="updateCart"></watch>
+    <productRelogio :premium="premium" v-on:add-to-cart="updateCart"></productRelogio>
+    <grupo5></grupo5>
     <shirt :premium="premium" v-on:add-to-cart="updateCart"></shirt>
   </div>
 </template>
 
 <script>
-import Product from './components/Product.vue'
-import Grupo4 from './components/Grupo4.vue'
-import Watch from './components/Watch.vue'
+import Product from './components/Product.vue';
+import Grupo4 from './components/Grupo4.vue';
+import Watch from './components/Watch.vue';
+import ProductRelogio from "./components/ProductRelogio.vue";
+import Grupo5 from "./components/Grupo5.vue";
 import Shirt from './components/Shirt.vue';
+
 export default {
   name: "App",
   data() {
     return {
       premium: false,
-      cart: []
-    }
+      cart: [],
+    };
   },
   components: {
     product: Product,
     grupo4: Grupo4,
     watch: Watch,
+    productRelogio: ProductRelogio,
+    grupo5: Grupo5,
     shirt: Shirt
   },
-    methods: {
-    updateCart(id){
-      this.cart.push(id)
-    }
-
+  methods: {
+    updateCart(id) {
+      this.cart.push(id);
+    },
   }
-
 };
 </script>
 
