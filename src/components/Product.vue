@@ -7,17 +7,17 @@
 
     <div class="product-info">
       <!-- interpolacao da computed property title -->
-      <h1>{{ title }}</h1> 
+      <h1>{{ title }}</h1>
       <!-- diretivas condicionais v-if v-else -->
       <p v-if="inStock">Em estoque</p>
       <p v-else>Indisponível</p>
       <!-- shiiping tb é uma computed property -->
-      <p>Entrega: {{shipping}}</p>
+      <p>Entrega: {{ shipping }}</p>
       <h3>Detalhes</h3>
 
       <ul>
         <!-- diretiva v-for para loops, percorrer listas -->
-        <li v-for="detail in details" :key="detail">{{detail}}</li>
+        <li v-for="detail in details" :key="detail">{{ detail }}</li>
       </ul>
 
       <h3>Cores</h3>
@@ -28,12 +28,12 @@
       <!-- o evento onmouseover dispara o método updateProduct passando o indice do item -->
       <div
         class="color-box"
-        :style="{backgroundColor: variant.variantColor}"
+        :style="{ backgroundColor: variant.variantColor }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
         @mouseover="updateProduct(index)"
       >
-        <p>{{variant.variantColor}}</p>
+        <p>{{ variant.variantColor }}</p>
       </div>
 
       <!-- o click no botão chama o método addToCart -->
@@ -42,8 +42,10 @@
       <button
         @click="addToCart"
         :disabled="!inStock"
-        :class="{disabledButton: !inStock}"
-      >Adicionar ao carrinho</button>
+        :class="{ disabledButton: !inStock }"
+      >
+        Adicionar ao carrinho
+      </button>
     </div>
     <div>
       <h2>Reviews</h2>
@@ -70,16 +72,20 @@ import ProductReview from "./ProductReview.vue";
 
 export default {
   name: "product", // nome do componente
-  components: { // declaração dos componentes importados
+  components: {
+    // declaração dos componentes importados
     "product-review": ProductReview
   },
-  props: { // as props permitem q o componente receba propriedades externas e estas sejam usadas dentro dele
-    premium: { // interfaces das propriedades
+  props: {
+    // as props permitem q o componente receba propriedades externas e estas sejam usadas dentro dele
+    premium: {
+      // interfaces das propriedades
       type: Boolean, // pode receber o tipo
       required: true // se é obrigatória
     }
   },
-  data() { // todos os tipos de propriedades, atributos, variaveis a serem manipuladas pelo componente
+  data() {
+    // todos os tipos de propriedades, atributos, variaveis a serem manipuladas pelo componente
     return {
       product: "Meias Coloridas",
       brand: "Fiap",
@@ -105,19 +111,23 @@ export default {
       ]
     };
   },
-  methods: { // funções javascript que provocarão alguma alteração
+  methods: {
+    // funções javascript que provocarão alguma alteração
     addToCart: function() {
       // o $emit dispara um evento add-to-cart que poderá receber um método quando importado dentro de outro componente
       this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId);
     },
-    updateProduct(index) { // apenas alterao índice do item selecionado
+    updateProduct(index) {
+      // apenas alterao índice do item selecionado
       this.selectedVariant = index;
     },
-    addReview(productReview) { // método que ao ser chamado adiciona o review recebido do componente importado
+    addReview(productReview) {
+      // método que ao ser chamado adiciona o review recebido do componente importado
       this.reviews.push(productReview);
     }
   },
-  computed: { // as computed properties são propriedades que sofrem alteração quando outras propriedades tem seus valores alterados, side effects, efeitos colaterais
+  computed: {
+    // as computed properties são propriedades que sofrem alteração quando outras propriedades tem seus valores alterados, side effects, efeitos colaterais
     title() {
       return this.brand + " " + this.product; // une duas propriedades
     },
@@ -128,7 +138,8 @@ export default {
       return this.variants[this.selectedVariant].variantQuantity; // retorna quantos item há no stock
     },
     shipping() {
-      if (this.premium) { // se recebeu a propriedade premium como true, o frete é grátis
+      if (this.premium) {
+        // se recebeu a propriedade premium como true, o frete é grátis
         return "Grátis";
       }
       return "R$ 2.99";

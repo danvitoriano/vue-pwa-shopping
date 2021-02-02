@@ -1,10 +1,9 @@
 <template>
   <div class="product">
-
     <div class="product-image">
       <!-- muito bom a troca de imagem com property bind! mas temos um jeito melhor! -->
       <img
-        v-bind:src= variants[selectedVariant].variantImage
+        v-bind:src="variants[selectedVariant].variantImage"
         title="imagem de relógios"
       />
     </div>
@@ -19,25 +18,24 @@
 
       <ul>
         <li v-for="detail in details" :key="detail">
-            {{detail}}
+          {{ detail }}
         </li>
       </ul>
 
       <h3>Cores</h3>
 
-    <!-- o setChange dispara uma função que muda a variant ao clicar! -->
+      <!-- o setChange dispara uma função que muda a variant ao clicar! -->
       <div
         class="color-box"
-        :style="{backgroundColor: variant.variantColor}"
+        :style="{ backgroundColor: variant.variantColor }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
         v-on:click="setChange(index)"
       >
-        <p>{{variant.variantColor}}</p>
+        <p>{{ variant.variantColor }}</p>
       </div>
 
       <button v-on:click="addToCart">Adicionar ao carrinho</button>
-      
     </div>
 
     <div class="product-review">
@@ -87,13 +85,13 @@ export default {
     };
   },
   methods: {
-      addToCart: function() {
-          this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
-      },
-      setChange(index) {
-        this.selectedVariant = index
-        this.inStock = this.variants[this.selectedVariant].variantQuantity > 0 // boa tentativa! podemos fazer melhor!
-      }
+    addToCart: function() {
+      this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId);
+    },
+    setChange(index) {
+      this.selectedVariant = index;
+      this.inStock = this.variants[this.selectedVariant].variantQuantity > 0; // boa tentativa! podemos fazer melhor!
+    }
   }
 };
 </script>

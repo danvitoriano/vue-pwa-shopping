@@ -1,15 +1,16 @@
 <template>
   <div class="painel">
-    <h2 class="painel-titulo">{{titulo}}</h2>
+    <h2 class="painel-titulo">{{ titulo }}</h2>
     <slot class="painel-corpo">
-        <!-- o slot permite que outro componente seja renderizado dentro deste container que é o painel -->
+      <!-- o slot permite que outro componente seja renderizado dentro deste container que é o painel -->
     </slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: { // esta propriedade será enviada por quem importar o Painel
+  props: {
+    // esta propriedade será enviada por quem importar o Painel
     titulo: String // já recebe direto o tipo da propriedade
   }
 };

@@ -4,7 +4,9 @@
       <label>CEP:</label>
       <!-- v-model faz um bind (link) entre o campo do formulário e os dados do componente  -->
       <input type="text" class="cep-input" v-model="cep" maxlength="8" />
-      <button type="button" class="cep-button" v-on:click="searchCep">Ok</button>
+      <button type="button" class="cep-button" v-on:click="searchCep">
+        Ok
+      </button>
     </div>
     <!-- se não há erro, chama a função que retorna o CEP -->
     <div v-if="!isError">
@@ -18,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios' // biblioteca usada para fazer requisições HTTP, similar ao Fetch
+import axios from "axios"; // biblioteca usada para fazer requisições HTTP, similar ao Fetch
 export default {
   name: "cepsearch",
   data() {
@@ -30,30 +32,45 @@ export default {
     };
   },
   methods: {
-      searchCep: function() {
-        if(this.cep.length === 8) { // sempre usar operadores strict
-          this.isError = false // erros
-          axios.get(`https://viacep.com.br/ws/${ this.cep }/json/`) // faz um get na API
-          .then( // usa a Promise para transformar a requisição em assíncrona e capturar a resposta
+    searchCep: function() {
+      if (this.cep.length === 8) {
+        // sempre usar operadores strict
+        this.isError = false; // erros
+        axios
+          .get(`https://viacep.com.br/ws/${this.cep}/json/`) // faz um get na API
+          .then(
+            // usa a Promise para transformar a requisição em assíncrona e capturar a resposta
             response => {
-              this.status = response.status // recebe o status da requisição
-              this.isError = (response.data.erro !== undefined) ? response.data.erro : false // recebe erro caso haja
-              this.dataCep = response.data // o resultado do CEP procurado
+              this.status = response.status; // recebe o status da requisição
+              this.isError =
+                response.data.erro !== undefined ? response.data.erro : false; // recebe erro caso haja
+              this.dataCep = response.data; // o resultado do CEP procurado
             }
           )
-          .catch( // caso a Promise seja rejeitada cairá no catch
+          .catch(
+            // caso a Promise seja rejeitada cairá no catch
             error => {
-              console.log(error)
-              this.isError = true
+              console.log(error);
+              this.isError = true;
             }
-          )
-        }
-      },
-      returnCep: function() { // retorna o CEP 
-        if (!this.isError && this.status == 200) { // se não tem erro, e a resposta foi status 200
-          return this.dataCep.logradouro + ',' + this.dataCep.bairro + '-' + this.dataCep.localidade + '/' + this.dataCep.uf // monta o retorno da informação
-        }
+          );
       }
+    },
+    returnCep: function() {
+      // retorna o CEP
+      if (!this.isError && this.status == 200) {
+        // se não tem erro, e a resposta foi status 200
+        return (
+          this.dataCep.logradouro +
+          "," +
+          this.dataCep.bairro +
+          "-" +
+          this.dataCep.localidade +
+          "/" +
+          this.dataCep.uf
+        ); // monta o retorno da informação
+      }
+    }
   }
 };
 </script>
@@ -66,14 +83,14 @@ body {
 }
 
 .cep-input {
-    display: inline-block;
-    width: auto;
+  display: inline-block;
+  width: auto;
 }
 
 .cep-button {
-    display: inline-block;
-    height: 31px;
-    width: auto;
+  display: inline-block;
+  height: 31px;
+  width: auto;
 }
 
 .alert-error {
@@ -99,5 +116,4 @@ input {
   height: 25px;
   margin-bottom: 20px;
 }
-
 </style>

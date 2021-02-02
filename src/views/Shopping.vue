@@ -7,27 +7,30 @@
     <product :premium="false" v-on:add-to-cart="updateCart"></product>
     <grupo4 :premium="premium" v-on:add-to-cart="updateCart"></grupo4>
     <watch :premium="premium" v-on:add-to-cart-with-watch="updateCart"></watch>
-    <productRelogio :premium="premium" v-on:add-to-cart="updateCart"></productRelogio>
+    <productRelogio
+      :premium="premium"
+      v-on:add-to-cart="updateCart"
+    ></productRelogio>
     <grupo5></grupo5>
     <shirt :premium="premium" v-on:add-to-cart="updateCart"></shirt>
   </div>
 </template>
 
 <script>
-import Product from '../components/Product.vue';
-import Grupo4 from '../components/Grupo4.vue';
-import Watch from '../components/Watch.vue';
+import Product from "../components/Product.vue";
+import Grupo4 from "../components/Grupo4.vue";
+import Watch from "../components/Watch.vue";
 import ProductRelogio from "../components/ProductRelogio.vue";
 import Grupo5 from "../components/Grupo5.vue";
-import Shirt from '../components/Shirt.vue';
-import FiltrarFotos from '../components/FiltrarFotos'
+import Shirt from "../components/Shirt.vue";
+import FiltrarFotos from "../components/FiltrarFotos";
 
 export default {
   name: "Shopping",
   data() {
     return {
       premium: true,
-      cart: [],
+      cart: []
     };
   },
   components: {
@@ -42,7 +45,7 @@ export default {
   methods: {
     updateCart(id) {
       this.cart.push(id);
-    },
+    }
   }
 };
 </script>

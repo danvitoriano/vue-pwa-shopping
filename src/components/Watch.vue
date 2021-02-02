@@ -1,8 +1,8 @@
 <template>
- <div class="product">
-
+  <div class="product">
     <div class="product-image">
-      <img class="img-watch"
+      <img
+        class="img-watch"
         src="https://i.gadgets360cdn.com/products/large/realme-watch-670x800-1590388807.jpg"
         title="imagem de Relógios"
       />
@@ -18,7 +18,7 @@
 
       <ul>
         <li v-for="detail in details" :key="detail">
-            {{detail}}
+          {{ detail }}
         </li>
       </ul>
 
@@ -26,12 +26,12 @@
 
       <div
         class="color-box"
-        :style="{backgroundColor: variant.variantColor, color:'White' }"
+        :style="{ backgroundColor: variant.variantColor, color: 'White' }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
       >
         <!-- <p @mouseover="mouseOver">{{variant.variantColor}}</p> -->
-        <p @mouseover="updateProduct(index)">{{variant.variantColor}}</p>
+        <p @mouseover="updateProduct(index)">{{ variant.variantColor }}</p>
       </div>
 
       <!-- <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button> -->
@@ -42,7 +42,6 @@
       >
         Adicionar ao carrinho
       </button>
-      
     </div>
 
     <div class="product-review">
@@ -57,13 +56,13 @@
         </li>
       </ul>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
 export default {
-   name: "watch",
-   data() {
+  name: "watch",
+  data() {
     return {
       product: "Smart Watch",
       brand: "Fiap",
@@ -92,28 +91,32 @@ export default {
     };
   },
   methods: {
-      addToCart: function() {
-          console.log("ddd")
-          this.$emit("add-to-cart-with-watch", this.variants[this.selectedVariant].variantId)
-      },
-      // mouseOver: function(){
-      //       this.buttonState = "";   
-      // },
-      updateProduct(index) { // função que atualiza apenas o produto iterado
-        this.selectedVariant = index;
-      }
+    addToCart: function() {
+      console.log("ddd");
+      this.$emit(
+        "add-to-cart-with-watch",
+        this.variants[this.selectedVariant].variantId
+      );
+    },
+    // mouseOver: function(){
+    //       this.buttonState = "";
+    // },
+    updateProduct(index) {
+      // função que atualiza apenas o produto iterado
+      this.selectedVariant = index;
+    }
   },
-  computed: { // as computed properties são propriedades que sofrem alteração por outras funções
+  computed: {
+    // as computed properties são propriedades que sofrem alteração por outras funções
     inStock() {
       return this.variants[this.selectedVariant].variantQuantity;
     }
   }
-
-}
+};
 </script>
 
 <style scoped>
 .img-watch {
-    filter: blur(5px);
+  filter: blur(5px);
 }
 </style>

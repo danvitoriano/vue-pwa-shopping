@@ -1,11 +1,7 @@
 <template>
- <div class="product">
-
+  <div class="product">
     <div class="product-image">
-      <img
-        :src="selectedImage"
-        title="imagem de Camisetas"
-      />
+      <img :src="selectedImage" title="imagem de Camisetas" />
     </div>
 
     <div class="product-info">
@@ -18,7 +14,7 @@
 
       <ul>
         <li v-for="detail in details" :key="detail">
-            {{detail}}
+          {{ detail }}
         </li>
       </ul>
 
@@ -28,23 +24,28 @@
       <!-- todos os eventos do javascript no vue são em minusculas com @ -->
       <div
         class="color-box"
-        :style="{backgroundColor: variant.variantBackgrounColor, color:variant.variantTextColor}"
+        :style="{
+          backgroundColor: variant.variantBackgrounColor,
+          color: variant.variantTextColor
+        }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
         @mouseover="setImage(index)"
-        :class="{selectedBox: index === selectedVariant}">
-        <p>{{variant.variantColor}}</p>
+        :class="{ selectedBox: index === selectedVariant }"
+      >
+        <p>{{ variant.variantColor }}</p>
       </div>
 
       <!-- mais um componente dentro de um componente! -->
       <shirt-size></shirt-size>
 
-      <button 
+      <button
         :disabled="!inStock"
-        :class="{disabledButton: !inStock}"
-        v-on:click="addToCart">Adicionar ao carrinho
+        :class="{ disabledButton: !inStock }"
+        v-on:click="addToCart"
+      >
+        Adicionar ao carrinho
       </button>
-      
     </div>
 
     <div class="product-review">
@@ -59,21 +60,21 @@
         </li>
       </ul>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
-import ShirtSize from './ShirtSize.vue';
+import ShirtSize from "./ShirtSize.vue";
 export default {
   components: { ShirtSize },
-   name: "shirt",
-   data() {
+  name: "shirt",
+  data() {
     return {
       product: "Camisetas Coloridas",
       brand: "Fiap",
       inStock: true,
       selectedVariant: 0,
-      selectedImage: require('../assets/white-shirt.jpg'),
+      selectedImage: require("../assets/white-shirt.jpg"),
       shipping: "Grátis",
       reviews: [],
       alt: "imagem de camisetas",
@@ -102,18 +103,19 @@ export default {
           variantTextColor: "white",
           variantImage: "red-shirt.jpg",
           variantQuantity: 10
-        },
+        }
       ]
     };
   },
   methods: {
-      addToCart: function() {
-          this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
-      },
-      setImage: function(index) {
-        this.selectedVariant = index;
-        this.selectedImage = require('../assets/' + this.variants[this.selectedVariant].variantImage) // boa tentativa mas podemos fazer melhor!
-      }
+    addToCart: function() {
+      this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId);
+    },
+    setImage: function(index) {
+      this.selectedVariant = index;
+      this.selectedImage = require("../assets/" +
+        this.variants[this.selectedVariant].variantImage); // boa tentativa mas podemos fazer melhor!
+    }
   }
 };
 </script>

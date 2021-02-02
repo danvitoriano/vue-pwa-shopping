@@ -1,20 +1,18 @@
 <template>
   <div>
-      {{hello}}
+    {{ hello }}
   </div>
 </template>
 
 <script>
 export default {
-    name: "About",
-    data(){
-        return {
-            hello: "oi"
-        }
-    }
-}
+  name: "About",
+  data() {
+    return {
+      hello: "oi"
+    };
+  }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
