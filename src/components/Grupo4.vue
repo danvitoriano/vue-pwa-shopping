@@ -70,7 +70,7 @@ export default {
       brand: "Fiap",
       inStock: true,
       selectedVariant: 0,
-      selectedImage: require('../assets/apple_watch_01.jpg'),
+      selectedImage: require('../assets/apple_watch_01.jpg'), // boa tentativa!
       shipping: "Grátis",
       reviews: [],
       alt: "imagem de apple watch",

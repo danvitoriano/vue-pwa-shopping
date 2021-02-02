@@ -27,13 +27,21 @@
       <div
         class="color-box"
         :style="{backgroundColor: variant.variantColor, color:'White' }"
-        v-for="variant in variants"
+        v-for="(variant, index) in variants"
         :key="variant.variantId"
       >
-        <p @mouseover="mouseOver">{{variant.variantColor}}</p>
+        <!-- <p @mouseover="mouseOver">{{variant.variantColor}}</p> -->
+        <p @mouseover="updateProduct(index)">{{variant.variantColor}}</p>
       </div>
 
-      <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button>
+      <!-- <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button> -->
+      <button
+        v-on:click="addToCart"
+        :disabled="!inStock"
+        :class="{ disabledButton: !inStock }"
+      >
+        Adicionar ao carrinho
+      </button>
       
     </div>
 
@@ -59,7 +67,6 @@ export default {
     return {
       product: "Smart Watch",
       brand: "Fiap",
-      inStock: false,
       selectedVariant: 0,
       shipping: "Grátis",
       buttonState: "active",
@@ -89,9 +96,17 @@ export default {
           console.log("ddd")
           this.$emit("add-to-cart-with-watch", this.variants[this.selectedVariant].variantId)
       },
-      mouseOver: function(){
-            this.buttonState = "";   
+      // mouseOver: function(){
+      //       this.buttonState = "";   
+      // },
+      updateProduct(index) { // função que atualiza apenas o produto iterado
+        this.selectedVariant = index;
       }
+  },
+  computed: { // as computed properties são propriedades que sofrem alteração por outras funções
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity;
+    }
   }
 
 }

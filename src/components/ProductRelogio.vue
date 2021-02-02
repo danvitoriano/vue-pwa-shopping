@@ -2,6 +2,7 @@
   <div class="product">
 
     <div class="product-image">
+      <!-- muito bom a troca de imagem com property bind! mas temos um jeito melhor! -->
       <img
         v-bind:src= variants[selectedVariant].variantImage
         title="imagem de relógios"
@@ -24,6 +25,7 @@
 
       <h3>Cores</h3>
 
+    <!-- o setChange dispara uma função que muda a variant ao clicar! -->
       <div
         class="color-box"
         :style="{backgroundColor: variant.variantColor}"
@@ -86,13 +88,11 @@ export default {
   },
   methods: {
       addToCart: function() {
-          // console.log("ddd")
           this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
       },
       setChange(index) {
         this.selectedVariant = index
-        // console.log('Teste', index)
-        this.inStock = this.variants[this.selectedVariant].variantQuantity > 0
+        this.inStock = this.variants[this.selectedVariant].variantQuantity > 0 // boa tentativa! podemos fazer melhor!
       }
   }
 };

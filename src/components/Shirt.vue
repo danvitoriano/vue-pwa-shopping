@@ -24,16 +24,19 @@
 
       <h3>Cores</h3>
 
+      <!-- podemos substituir os eventos v-on: pelo @ -->
+      <!-- todos os eventos do javascript no vue são em minusculas com @ -->
       <div
         class="color-box"
         :style="{backgroundColor: variant.variantBackgrounColor, color:variant.variantTextColor}"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
-        v-on:mouseover="setImage(index)"
+        @mouseover="setImage(index)"
         :class="{selectedBox: index === selectedVariant}">
         <p>{{variant.variantColor}}</p>
       </div>
 
+      <!-- mais um componente dentro de um componente! -->
       <shirt-size></shirt-size>
 
       <button 
@@ -109,7 +112,7 @@ export default {
       },
       setImage: function(index) {
         this.selectedVariant = index;
-        this.selectedImage = require('../assets/' + this.variants[this.selectedVariant].variantImage)
+        this.selectedImage = require('../assets/' + this.variants[this.selectedVariant].variantImage) // boa tentativa mas podemos fazer melhor!
       }
   }
 };

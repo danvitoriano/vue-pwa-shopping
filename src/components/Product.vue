@@ -1,6 +1,7 @@
 <template>
   <div class="product">
 
+    <!-- transformamos a propriedade src em dinamica! -->
     <div class="product-image">
       <img
         :src="selectedImage"
@@ -64,9 +65,8 @@ export default {
     return {
       product: "Meias Coloridas",
       brand: "Fiap",
-      inStock: false,
       selectedVariant: 0,
-      selectedImage: 'https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg',
+      // selectedImage: 'https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg',
       shipping: "Grátis",
       reviews: [],
       alt: "imagem de meias",
@@ -94,9 +94,16 @@ export default {
           this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
       },
       setImage: function(index) {
-        this.selectedVariant = index
-        this.selectedImage = this.variants[this.selectedVariant].variantImage
+        return this.selectedVariant = index
       }
+  },
+  computed : {
+    selectedImage() {
+      return this.variants[this.selectedVariant].variantImage;
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity;
+    }
   }
 };
 </script>
