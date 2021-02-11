@@ -2,8 +2,8 @@
  <div class="product">
 
     <div class="product-image">
-      <img class="img-watch"
-        src="https://i.gadgets360cdn.com/products/large/realme-watch-670x800-1590388807.jpg"
+      <img 
+        :src="selectedImage"
         title="imagem de Relógios"
       />
     </div>
@@ -27,10 +27,10 @@
       <div
         class="color-box"
         :style="{backgroundColor: variant.variantColor, color:'White' }"
-        v-for="variant in variants"
+        v-for="(variant, index) in variants"
         :key="variant.variantId"
       >
-        <p @mouseover="mouseOver">{{variant.variantColor}}</p>
+        <p @mouseover="setImage(index)">{{variant.variantColor}}</p>
       </div>
 
       <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button>
@@ -61,6 +61,7 @@ export default {
       brand: "Fiap",
       inStock: false,
       selectedVariant: 0,
+      selectedImage: require('../assets/AppleWatchGrupoDeme02.jpeg'),
       shipping: "Grátis",
       buttonState: "active",
       reviews: [],
@@ -71,14 +72,14 @@ export default {
           variantId: 2266,
           variantColor: "Black",
           variantImage:
-            "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
+            "AppleWatchGrupoDeme02.jpeg",
           variantQuantity: 10
         },
         {
           variantId: 2267,
           variantColor: "gray",
           variantImage:
-            "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
+            "AppleWatchGrupoDeme01.jpeg",
           variantQuantity: 0
         }
       ]
@@ -89,8 +90,12 @@ export default {
           console.log("ddd")
           this.$emit("add-to-cart-with-watch", this.variants[this.selectedVariant].variantId)
       },
+      setImage: function(index) {
+        this.selectedVariant = index;
+        this.selectedImage = require('../assets/' + this.variants[this.selectedVariant].variantImage)
+      },
       mouseOver: function(){
-            this.buttonState = "";   
+      
       }
   }
 
