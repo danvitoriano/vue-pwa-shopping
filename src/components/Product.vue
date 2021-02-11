@@ -1,74 +1,96 @@
 <template>
   <div class="product">
-
     <div class="product-image">
-      <img
-        :src="selectedImage"
-        title="imagem de meias"
-      />
+      <!-- image é uma computed properties ligada ao property bind de src -->
+      <img :src="image" :title="alt" />
     </div>
 
     <div class="product-info">
-      <h1>Fiap Meias Coloridas</h1>
+      <!-- interpolacao da computed property title -->
+      <h1>{{ title }}</h1>
+      <!-- diretivas condicionais v-if v-else -->
       <p v-if="inStock">Em estoque</p>
       <p v-else>Indisponível</p>
-
+      <!-- shiiping tb é uma computed property -->
       <p>Entrega: {{ shipping }}</p>
       <h3>Detalhes</h3>
 
       <ul>
-        <li v-for="detail in details" :key="detail">
-            {{detail}}
-        </li>
+        <!-- diretiva v-for para loops, percorrer listas -->
+        <li v-for="detail in details" :key="detail">{{ detail }}</li>
       </ul>
 
       <h3>Cores</h3>
 
+      <!-- property bind de style  -->
+      <!-- diretiva v-for com 2 parametros, o variant é o item da lista, o index recebe a posição do item na lista -->
+      <!-- a propriedade key é obrigatória ao iterar listas no Vue -->
+      <!-- o evento onmouseover dispara o método updateProduct passando o indice do item -->
       <div
         class="color-box"
-        :style="{backgroundColor: variant.variantColor}"
+        :style="{ backgroundColor: variant.variantColor }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
-        v-on:mouseover="setImage(index)"
-        :class="{selectedBox: index === selectedVariant}">
-        <p>{{variant.variantColor}}</p>
+        @mouseover="updateProduct(index)"
+      >
+        <p>{{ variant.variantColor }}</p>
       </div>
 
-      <button 
+      <!-- o click no botão chama o método addToCart -->
+      <!-- a propriedade disabled de button virou dinamica e recebe uma computed property -->
+      <!-- é possível transformar classe em propriedades dinamicas e receber computed properties booleanas -->
+      <button
+        @click="addToCart"
         :disabled="!inStock"
-        :class="{disabledButton: !inStock}"
-        v-on:click="addToCart">Adicionar ao carrinho
+        :class="{ disabledButton: !inStock }"
+      >
+        Adicionar ao carrinho
       </button>
-      
     </div>
-
-    <div class="product-review">
+    <div>
       <h2>Reviews</h2>
+      <!-- v-if só exibe mensagem se a lista de reviews estiver vazia -->
       <p v-if="!reviews.length">There are no reviews yet.</p>
+      <!-- senão, percorre a lista e exibe os reviews com o v-for -->
       <ul v-else>
-        <li>
-          <p>review.name</p>
-          <p>Rating: review.rating</p>
-          <p>review.review</p>
-          <p>review.recommend</p>
+        <li v-for="(review, index) in reviews" :key="index">
+          <p>{{ review.name }}</p>
+          <p>Rating: {{ review.rating }}</p>
+          <p>{{ review.review }}</p>
+          <p>{{ review.recommend }}</p>
         </li>
       </ul>
     </div>
+    <!-- inserção de um novo componente -->
+    <!-- ao receber um evento chamado review-submitted, dispara o método addReview -->
+    <product-review @review-submitted="addReview"></product-review>
   </div>
 </template>
 
 <script>
+import ProductReview from "./ProductReview.vue";
+
 export default {
-  name: "product",
+  name: "product", // nome do componente
+  components: {
+    // declaração dos componentes importados
+    "product-review": ProductReview
+  },
+  props: {
+    // as props permitem q o componente receba propriedades externas e estas sejam usadas dentro dele
+    premium: {
+      // interfaces das propriedades
+      type: Boolean, // pode receber o tipo
+      required: true // se é obrigatória
+    }
+  },
   data() {
+    // todos os tipos de propriedades, atributos, variaveis a serem manipuladas pelo componente
     return {
       product: "Meias Coloridas",
       brand: "Fiap",
-      inStock: false,
       selectedVariant: 0,
-      selectedImage: 'https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg',
-      shipping: "Grátis",
-      reviews: [],
+      reviews: [], // receberá os reviews
       alt: "imagem de meias",
       details: ["80% cotton", "20% polyester", "Gender-neutral"],
       variants: [
@@ -90,17 +112,43 @@ export default {
     };
   },
   methods: {
-      addToCart: function() {
-          this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
-      },
-      setImage: function(index) {
-        this.selectedVariant = index
-        this.selectedImage = this.variants[this.selectedVariant].variantImage
+    // funções javascript que provocarão alguma alteração
+    addToCart: function() {
+      // o $emit dispara um evento add-to-cart que poderá receber um método quando importado dentro de outro componente
+      this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId);
+    },
+    updateProduct(index) {
+      // apenas alterao índice do item selecionado
+      this.selectedVariant = index;
+    },
+    addReview(productReview) {
+      // método que ao ser chamado adiciona o review recebido do componente importado
+      this.reviews.push(productReview);
+    }
+  },
+  computed: {
+    // as computed properties são propriedades que sofrem alteração quando outras propriedades tem seus valores alterados, side effects, efeitos colaterais
+    title() {
+      return this.brand + " " + this.product; // une duas propriedades
+    },
+    image() {
+      return this.variants[this.selectedVariant].variantImage; // retorna qual variante foi selecionada
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity; // retorna quantos item há no stock
+    },
+    shipping() {
+      if (this.premium) {
+        // se recebeu a propriedade premium como true, o frete é grátis
+        return "Grátis";
       }
+      return "R$ 2.99";
+    }
   }
 };
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 body {
   font-family: tahoma;
@@ -134,20 +182,10 @@ img {
   flex-basis: 500px;
 }
 
-
 .color-box {
   width: 40px;
   height: 40px;
   margin-top: 5px;
-  border-radius: 5px;
-}
-.color-box:hover {
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-.selectedBox {
-  border: 2px solid gray;
-  border-radius: 5px;
 }
 
 .cart {

@@ -1,6 +1,5 @@
 <template>
- <div class="product">
-
+  <div class="product">
     <div class="product-image">
       <img 
         :src="selectedImage"
@@ -18,7 +17,7 @@
 
       <ul>
         <li v-for="detail in details" :key="detail">
-            {{detail}}
+          {{ detail }}
         </li>
       </ul>
 
@@ -33,8 +32,14 @@
         <p @mouseover="setImage(index)">{{variant.variantColor}}</p>
       </div>
 
-      <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button>
-      
+      <!-- <button v-show="{buttonState}" v-on:click="addToCart">Adicionar ao carrinho</button> -->
+      <button
+        v-on:click="addToCart"
+        :disabled="!inStock"
+        :class="{ disabledButton: !inStock }"
+      >
+        Adicionar ao carrinho
+      </button>
     </div>
 
     <div class="product-review">
@@ -49,17 +54,16 @@
         </li>
       </ul>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
 export default {
-   name: "watch",
-   data() {
+  name: "watch",
+  data() {
     return {
       product: "Smart Watch",
       brand: "Fiap",
-      inStock: false,
       selectedVariant: 0,
       selectedImage: require('../assets/AppleWatchGrupoDeme02.jpeg'),
       shipping: "Grátis",
@@ -98,12 +102,11 @@ export default {
       
       }
   }
-
-}
+};
 </script>
 
 <style scoped>
 .img-watch {
-    filter: blur(5px);
+  filter: blur(5px);
 }
 </style>
