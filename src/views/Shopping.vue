@@ -6,7 +6,6 @@
     <FiltrarFotos msg="Fiap Vue Pics" />
     <product :premium="false" v-on:add-to-cart="updateCart"></product>
     <grupo4 :premium="premium" v-on:add-to-cart="updateCart"></grupo4>
-    <watch :premium="premium" v-on:add-to-cart-with-watch="updateCart"></watch>
     <productRelogio
       :premium="premium"
       v-on:add-to-cart="updateCart"
@@ -19,7 +18,6 @@
 <script>
 import Product from "../components/Product.vue";
 import Grupo4 from "../components/Grupo4.vue";
-import Watch from "../components/Watch.vue";
 import ProductRelogio from "../components/ProductRelogio.vue";
 import Grupo5 from "../components/Grupo5.vue";
 import Shirt from "../components/Shirt.vue";
@@ -36,7 +34,6 @@ export default {
   components: {
     product: Product,
     grupo4: Grupo4,
-    watch: Watch,
     productRelogio: ProductRelogio,
     grupo5: Grupo5,
     shirt: Shirt,
