@@ -5,11 +5,18 @@
     <p>
       Produto: <strong> {{ product }} </strong>
     </p>
+    <p>
+      Quantidade: <strong> {{ getQte }} </strong>
+      Cor: <strong> {{ getColor }} </strong>
+    </p>
+    <p>
+      Produto: <strong> {{ product }} </strong>
+    </p>
     <!-- <button @click="alterarNome">Alterar Nome</button> -->
     <hr />
     <div class="componentes">
       <ProdutoInfo :product="product" :brand="brand" />
-      <Carousel :variants="variants"/>
+      <Carousel :variants="variants" @change="SettingQteAndColor"/>
       <!-- <app-usuario-editar :idade="idade" /> -->
     </div>
   </div>
@@ -18,7 +25,6 @@
 <script>
 import ProdutoInfo from "./ProdutoInfo";
 import Carousel from "../../components/grupo1/WatchCarousel.vue";
-
 
 export default {
   components: { ProdutoInfo, Carousel },
@@ -38,25 +44,31 @@ export default {
           variantId: 2266,
           variantColor: "Black",
           variantImage: "AppleWatchGrupoDeme02.jpeg",
-          variantQuantity: 10
+          variantQuantity: 2000,
         },
         {
           variantId: 2267,
           variantColor: "gray",
           variantImage: "AppleWatchGrupoDeme01.jpeg",
-          variantQuantity: 0
-        }
-      ]
+          variantQuantity: 10000,
+        },
+      ],
     };
   },
+  computed: {
+    getColor() {
+      return this.variants[this.selectedVariant].variantColor;
+    },
+    getQte() {
+      return this.variants[this.selectedVariant].variantQuantity;
+    }
+
+  },
   methods: {
-    // alterarNome() {
-    //   this.nome = "Ana";
-    // },
-    // reiniciarNome() {
-    //   this.nome = "Pedro";
-    // },
-  }
+    SettingQteAndColor(data) {
+      this.selectedVariant = data;
+    },
+  },
 };
 </script>
 

@@ -14,14 +14,14 @@
           Reservar
         </v-btn>
       </template>
-      <v-sheet class="text-center" height="200px">
+      <v-sheet class="text-center" height="400px">
         <FormComprar @resultFormEvent="closeSheet" />
-        <v-btn class="mt-6" text color="green" @click="sheet = !sheet">
+        <!-- <v-btn class="mt-6" text color="green" @click="sheet = !sheet">
           Concluir
         </v-btn>
         <div class="py-3">
           This is a bottom sheet using the persistent prop
-        </div>
+        </div> -->
       </v-sheet>
     </v-bottom-sheet>
   </div>
