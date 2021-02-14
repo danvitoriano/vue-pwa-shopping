@@ -1,5 +1,12 @@
 <template>
   <div>
+    <Dialog
+      :okButtonMessage="welcomeClickOk"
+      :text="welcomeText"
+      :title="welcomeTitle"
+      :showDialog="showDialog"
+    />
+
     <alert-error v-show="isAlert">{{ message }}</alert-error>
     <v-alert v-show="isSuccess" type="success">{{ successMsg }}</v-alert>
     <div class="grupo3-form">
@@ -63,6 +70,7 @@
 import axios from "axios";
 import { VuePaycard } from "vue-paycard";
 import AlertError from "./shared/AlertError.vue";
+import Dialog from "./shared/Dialog.vue";
 
 const getDate = (value) => {
   const date = value.split("/");
@@ -79,6 +87,10 @@ export default {
     isAlert: false,
     isSuccess: false,
     message: "",
+    welcomeTitle: "",
+    welcomeText: "",
+    welcomeClickOk: "",
+    showDialog: false,
     cardNumberRules: [
       (v) => (v && v.length === 19) || "Insira um cartão valido",
     ],
@@ -124,7 +136,10 @@ export default {
     },
   }),
   created() {
-    alert("Test");
+    this.welcomeTitle = "Atenção";
+    this.welcomeText = "Não utilize dados reais, isso é apenas um teste";
+    this.welcomeClickOk = "OK";
+    this.showDialog = true;
   },
   computed: {
     successMsg() {
@@ -144,6 +159,7 @@ export default {
   components: {
     VuePaycard,
     AlertError,
+    Dialog,
   },
   methods: {
     async validate() {
