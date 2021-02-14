@@ -1,9 +1,7 @@
 <template>
   <div>
     <alert-error v-show="isAlert">{{ message }}</alert-error>
-    <v-alert v-show="isSuccess" type="success"
-      >Dados salvos com sucesso</v-alert
-    >
+    <v-alert v-show="isSuccess" type="success">{{ successMsg }}</v-alert>
     <div class="grupo3-form">
       <h1>{{ "Cartão de Crédito" }}</h1>
 
@@ -127,6 +125,11 @@ export default {
   }),
   created() {
     alert("Test");
+  },
+  computed: {
+    successMsg() {
+      return "Dados salvos com sucesso: " + " " + this.valueFields.cardName;
+    },
   },
   watch: {
     date: function (value) {
