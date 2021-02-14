@@ -8,7 +8,13 @@
       <h1>{{ "Cartão de Crédito" }}</h1>
 
       <vue-paycard :labels="labels" :value-fields="valueFields" />
-      <v-form class="form" ref="form" v-model="valid" lazy-validation>
+      <v-form
+        class="form"
+        ref="form"
+        v-model="valid"
+        lazy-validation
+        @submit.prevent="saveData"
+      >
         <v-text-field
           v-model="valueFields.cardNumber"
           :rules="cardNumberRules"
@@ -43,10 +49,10 @@
 
         <v-btn
           block
+          type="submit"
           color="success"
           class="mr-4"
           :disabled="!valid"
-          @click="validate"
         >
           Cadastrar Cartão
         </v-btn>
