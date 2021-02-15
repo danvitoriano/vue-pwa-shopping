@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Shopping from "../views/Shopping.vue";
-import Clima from "../views/Clima.vue";
+import News from "../views/News.vue";
 
 // 1. Use Vue Router
 Vue.use(VueRouter);
@@ -27,9 +27,9 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: "/clima",
-    name: "Clima",
-    component: Clima
+    path: "/news",
+    name: "News",
+    component: News
   }
 ];
 

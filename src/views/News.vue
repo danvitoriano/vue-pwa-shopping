@@ -6,7 +6,7 @@
     >
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
 
-      <v-toolbar-title>Pesquisa de Clima</v-toolbar-title>
+      <v-toolbar-title>Pesquisa de Notícias</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -18,7 +18,7 @@
 
     <v-main>
       <v-container>
-      <clima></clima>
+      <news></news>
         <v-row>
           <v-col
             v-for="n in 3"
@@ -35,16 +35,16 @@
 
 <script>
 
-import Clima from '../components/Clima.vue'
+import News from '../components/News.vue'
 
   export default {
-    name: "Clima",
+    name: "News",
     data() {
       return {
       }
     },
     components: {
-      clima: Clima
+      news: News
     },
     methods: {
 

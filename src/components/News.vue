@@ -1,8 +1,8 @@
 <template>
-  <div class="clima">
-    <p>Pesquisa de Clima</p>
-    <input type="text" class="city-input" v-model="city" placeholder="Cidade" maxlength="8" />
-    <button type="button" class="city-button" v-on:click="searchCity">Pesquisar</button>
+  <div class="news">
+    <p>Pesquisa de Notícias</p>
+    <input type="text" class="assunto-input" v-model="assunto" placeholder="Assunto" maxlength="8" />
+    <button type="button" class="assunto-button" v-on:click="searchNews">Pesquisar</button>
   </div>
 </template>
 
@@ -11,17 +11,16 @@
 // import axios from "axios"; // biblioteca usada para fazer requisições HTTP, similar ao Fetch
 
 export default {
-    name: "Clima",
+    name: "News",
     data() {
         return {
-            city: '',
-            dataClima: {},
+            assunto: '',
         }
     },
     methods: {
-        searchCity: function () {
-            if (this.city.length > 0) {
-                console.log(`${this.city}`);
+        searchNews: function () {
+            if (this.assunto.length > 0) {
+                console.log(`${this.token}`);
             }
         }
     },
@@ -33,7 +32,7 @@ export default {
 
 <style>
 
-.city-input {
+.assunto-input {
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px;
@@ -41,7 +40,7 @@ export default {
     margin: 10px;
 }
 
-.city-button {
+.assunto-button {
     border-radius: 5px;
     color: white;
     margin: 10px;
