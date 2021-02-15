@@ -1,16 +1,10 @@
 <template>
   <div>
-    <Dialog
-      :okButtonMessage="welcomeClickOk"
-      :text="welcomeText"
-      :title="welcomeTitle"
-      :showDialog="showDialog"
-    />
-
-    <v-alert v-show="isAlert" type="error">{{ message }}</v-alert>
+    <alert-error v-show="isAlert">{{ message }}</alert-error>
     <v-alert v-show="isOverweight" type="warning">{{ imcResult }}</v-alert>
     <v-alert v-show="isObeseOrThinness" type="error">{{ imcResult }}</v-alert>
     <v-alert v-show="isNormal" type="success">{{ imcResult }}</v-alert>
+    <v-alert v-show="isSuccess" type="success">{{ successResult }}</v-alert>
     <div class="grupo2-form">
       <h1>{{ "Calculadora de IMC" }}</h1>
 
@@ -64,7 +58,8 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
+import AlertError from "./shared/AlertError.vue";
 
 export default {
   data: () => ({
@@ -73,6 +68,8 @@ export default {
     isObeseOrThinness: false,
     isNormal: false,
     isOverweight: false,
+    isSuccess: false,
+    messagePeople: "",
     message: "",
     welcomeTitle: "",
     welcomeText: "",
@@ -94,16 +91,16 @@ export default {
       personActivityLevel: "v-person-activity-level",
     },
   }),
-  created() {
-    this.welcomeTitle = "Atenção";
-    this.welcomeText = "Não utilize dados reais, isso é apenas um teste";
-    this.welcomeClickOk = "OK";
-    this.showDialog = true;
-  },
   computed: {
     imcResult() {
       return "Resultado IMC: " + " " + this.valueFields.personImc;
+    },
+    successResult() {
+      return this.messagePeople;
     }
+  },
+  components: {
+    AlertError
   },
   methods: {
     async validate() {
@@ -123,6 +120,7 @@ export default {
       this.isObeseOrThinness = false;
       this.isNormal = false;
       this.isOverweight = false;
+      this.isSuccess = false;
 
       if (isNaN(height) || isNaN(weight)) {
         this.isAlert = true;
@@ -142,6 +140,16 @@ export default {
       } else {
         this.valueFields.personImc = "Obeso"
         this.isObeseOrThinness = true;
+      }
+
+      try {
+        let data = await axios.get('https://run.mocky.io/v3/99c4fb47-cf3e-4dcf-9655-a81cb90a1ef9')
+        let participants = data.data.participantes
+        this.isSuccess = true
+        this.messagePeople = `${data.data.grupo} - ${participants[0].nome} - ${participants[1].nome} - ${participants[2].nome} - ${participants[3].nome}`
+      } catch (error) {
+        this.isAlert = true;
+        this.message = "erro ao recuperar os dados";
       }
     },
   },
