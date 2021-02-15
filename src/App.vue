@@ -16,6 +16,13 @@
         <span class="mr-2">About</span>
         <v-icon>mdi-alert-decagram</v-icon>
       </v-btn>
+      <v-btn
+        to="/grupo2"
+        text
+      >
+        <span class="mr-2">Grupo 2</span>
+        <v-icon>mdi-account-cowboy-hat</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
