@@ -1,8 +1,10 @@
 <template>
   <div class="news">
     <p>Pesquisa de Notícias</p>
-    <input type="text" class="assunto-input" v-model="assunto" placeholder="Assunto" maxlength="8" />
-    <button type="button" class="assunto-button" v-on:click="searchNews">Pesquisar</button>
+    <form class="form" v-on:submit.prevent="searchNews">
+        <input type="text" class="assunto-input" v-model="assunto" placeholder="Assunto" maxlength="8" />
+        <input type="submit" value="Pesquisar" class="assunto-button">
+    </form>
   </div>
 </template>
 
@@ -20,7 +22,7 @@ export default {
     methods: {
         searchNews: function () {
             if (this.assunto.length > 0) {
-                console.log(`${this.token}`);
+                console.log(`${this.assunto}`);
             }
         }
     },
@@ -41,7 +43,10 @@ export default {
 }
 
 .assunto-button {
+    border: 1px solid black;
     border-radius: 5px;
+    width: 100px;
+    background-color: teal;
     color: white;
     margin: 10px;
 }
