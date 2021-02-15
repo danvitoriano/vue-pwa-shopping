@@ -21,8 +21,8 @@ export default {
   name: "News",
   data() {
     return {
+      assunto: "",
       dataNews: {},
-      //   assunto: "",
       //   countNews: Number,
       //   titulo: "",
       //   introducao: "",
