@@ -3,12 +3,13 @@
     <v-container>
       <v-row>
         <v-col v-for="item in data.items" :key="item" cols="6">
-          <v-card height="200">
+          <v-card height="230">
             <h2>{{ item.titulo }}</h2>
             <h5>{{ item.data_publicacao }}</h5>
             <hr />
             <h4>{{ item.introducao }}</h4>
-            <a v-bind:href="item.link" target="blank">Leia Mais</a>
+            <br />
+            <a :href="item.link" target="blank">{{ texto }}</a>
           </v-card>
         </v-col>
       </v-row>
@@ -22,8 +23,6 @@ export default {
   data() {
     return {};
   },
-  props: ["data"],
-  methods: {},
-  computed: {},
+  props: ["data", "texto"],
 };
 </script>

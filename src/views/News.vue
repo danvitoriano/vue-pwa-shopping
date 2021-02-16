@@ -24,7 +24,7 @@
         <input type="submit" value="Pesquisar" class="assunto-button" />
       </form>
       <p>{{ counter }}</p>
-      <CardNews :data="data"></CardNews>
+      <CardNews :data="data" :texto="texto"></CardNews>
     </div>
   </v-app>
 </template>
@@ -37,6 +37,7 @@ export default {
   name: "News",
   data() {
     return {
+      texto: "",
       assunto: "",
       data: {
         count: 0,
@@ -63,6 +64,7 @@ export default {
           .then((response) => {
             this.status = response.status;
             this.data = response.data;
+            this.texto = "Leia Mais 👉";
             console.log(response);
           })
           .catch(
@@ -88,7 +90,7 @@ export default {
 
 <style scoped>
 .busca {
-  background-color: thistle;
+  padding: 30px;
 }
 
 .assunto-input {
