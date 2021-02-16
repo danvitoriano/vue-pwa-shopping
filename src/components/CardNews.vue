@@ -1,0 +1,29 @@
+<template>
+  <v-main>
+    <v-container>
+      <v-row>
+        <v-col v-for="item in data.items" :key="item" cols="6">
+          <v-card height="200">
+            <h2>{{ tituloUpper }}</h2>
+            <h5>{{ item.data_publicacao }}</h5>
+            <hr />
+            <h3>{{ item.introducao }}</h3>
+            <a target="blank">{{ item.link }}</a>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
+</template>
+
+<script>
+export default {
+  name: "News",
+  data() {
+    return {};
+  },
+  props: ["data"],
+  methods: {},
+  computed: {},
+};
+</script>
