@@ -4,11 +4,11 @@
       <v-row>
         <v-col v-for="item in data.items" :key="item" cols="6">
           <v-card height="200">
-            <h2>{{ tituloUpper }}</h2>
+            <h2>{{ item.titulo }}</h2>
             <h5>{{ item.data_publicacao }}</h5>
             <hr />
-            <h3>{{ item.introducao }}</h3>
-            <a target="blank">{{ item.link }}</a>
+            <h4>{{ item.introducao }}</h4>
+            <a href="" target="blank">{{ item.link }}</a>
           </v-card>
         </v-col>
       </v-row>

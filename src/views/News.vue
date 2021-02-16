@@ -23,6 +23,7 @@
         />
         <input type="submit" value="Pesquisar" class="assunto-button" />
       </form>
+      <p>{{ counter }}</p>
       <CardNews :data="data"></CardNews>
     </div>
   </v-app>
@@ -75,8 +76,8 @@ export default {
     },
   },
   computed: {
-    tituloUpper() {
-      return this.data.items.titulo.toUpperCase();
+    counter: function() {
+      return `${this.data.count} notícias encontradas`;
     },
   },
   components: {
