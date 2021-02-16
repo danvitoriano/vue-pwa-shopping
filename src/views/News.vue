@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app class="busca" id="inspire">
     <v-app-bar app shrink-on-scroll>
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
 
@@ -87,6 +87,10 @@ export default {
 </script>
 
 <style scoped>
+.busca {
+  background-color: thistle;
+}
+
 .assunto-input {
   border: 1px solid black;
   border-radius: 5px;

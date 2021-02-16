@@ -8,7 +8,7 @@
             <h5>{{ item.data_publicacao }}</h5>
             <hr />
             <h4>{{ item.introducao }}</h4>
-            <a href="" target="blank">{{ item.link }}</a>
+            <a v-bind:href="item.link" target="blank">Leia Mais</a>
           </v-card>
         </v-col>
       </v-row>
