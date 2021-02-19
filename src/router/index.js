@@ -12,11 +12,11 @@ Vue.use(VueRouter);
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-  // {
-  //   path: "/",
-  //   name: "Shopping",
-  //   component: Shopping
-  // },
+  {
+    path: "/",
+    name: "Shopping",
+    component: Shopping
+  },
   { 
     // Fiap Smart Watch 
     // Bruno Fonseca de Almeida - RM 337107
