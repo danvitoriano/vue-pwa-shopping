@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Shopping from "../views/Shopping.vue";
+// import Shopping from "../views/Shopping.vue";
+import Produto from '../views/grupo1/WatchScreen.vue'
 
 // 1. Use Vue Router
 Vue.use(VueRouter);
@@ -15,6 +16,17 @@ const routes = [
     path: "/",
     name: "Shopping",
     component: Shopping
+  },
+  { 
+    // Fiap Smart Watch 
+    // Bruno Fonseca de Almeida - RM 337107
+    // Demetrius Tavares - RM 338132
+    // Dorenalto Mangueira Couto - RM 338609
+    // Marcelo Toshio Yamashita - RM 337940
+    path: "/grupo1",
+    name: "Produto",
+    component: Produto
+
   },
   {
     path: "/about",

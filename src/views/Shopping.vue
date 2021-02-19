@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: tahoma;
   color: #282828;
