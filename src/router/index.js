@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import Shopping from "../views/Shopping.vue";
+import Shopping from "../views/Shopping.vue";
+import Grupo3 from "../views/Grupo3.vue";
 import Produto from '../views/grupo1/WatchScreen.vue'
 
 // 1. Use Vue Router
@@ -36,6 +37,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/grupo3",
+    name: "Grupo3",
+    component: Grupo3
   },
   {
     path: "/group4",
