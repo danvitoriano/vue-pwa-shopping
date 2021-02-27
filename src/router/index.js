@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import Shopping from "../views/Shopping.vue";
+import Shopping from "../views/Shopping.vue";
 import Produto from '../views/grupo1/WatchScreen.vue'
 
 // 1. Use Vue Router
