@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Shopping from "../views/Shopping.vue";
 import Grupo3 from "../views/Grupo3.vue";
-import Produto from '../views/grupo1/WatchScreen.vue'
+import Produto from "../views/grupo1/WatchScreen.vue";
 
 // 1. Use Vue Router
 Vue.use(VueRouter);
@@ -16,18 +16,17 @@ const routes = [
   {
     path: "/",
     name: "Shopping",
-    component: Shopping
+    component: Shopping,
   },
-  { 
-    // Fiap Smart Watch 
+  {
+    // Fiap Smart Watch
     // Bruno Fonseca de Almeida - RM 337107
     // Demetrius Tavares - RM 338132
     // Dorenalto Mangueira Couto - RM 338609
     // Marcelo Toshio Yamashita - RM 337940
     path: "/grupo1",
     name: "Produto",
-    component: Produto
-
+    component: Produto,
   },
   {
     path: "/about",
@@ -36,18 +35,23 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
     path: "/grupo3",
     name: "Grupo3",
-    component: Grupo3
+    component: Grupo3,
   },
   {
     path: "/group4",
     name: "Group 4",
-    component: () => import("../views/Group4.vue")
-  }
+    component: () => import("../views/Group4.vue"),
+  },
+  {
+    path: "/pokemon",
+    name: "Pokemons",
+    component: () => import("../views/Pokemon.vue"),
+  },
 ];
 
 // 4. Create the router instance and pass the `routes` option
@@ -56,7 +60,7 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;
