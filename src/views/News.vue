@@ -15,13 +15,18 @@
       <p>Pesquisa de Notícias</p>
       <form class="form" v-on:submit.prevent="searchNews">
         <input
+          id="input-subject"
           type="text"
           class="assunto-input"
           v-model="assunto"
           placeholder="Assunto"
-          maxlength="8"
         />
-        <input type="submit" value="Pesquisar" class="assunto-button" />
+        <input
+          id="search-news"
+          type="submit"
+          value="Pesquisar"
+          class="assunto-button"
+        />
       </form>
       <p>{{ counter }}</p>
       <CardNews :data="data" :texto="texto"></CardNews>
