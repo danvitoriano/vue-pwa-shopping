@@ -3,8 +3,12 @@
     <v-form @submit.prevent="searchPokemonByName">
       <v-container>
         <v-row class="marginInput">
-          <v-text-field label="Encontre novos pokémons" v-model="srcPokemon" />
-          <v-btn class="ma-2" icon color="black" type="submit">
+          <v-text-field
+            id="search-pokemon"
+            label="Encontre novos pokémons"
+            v-model="srcPokemon"
+          />
+          <v-btn class="ma-2" icon color="black" type="submit" id="btn-src">
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
         </v-row>

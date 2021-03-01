@@ -2,7 +2,7 @@
   <v-card dark height="150" width="350">
     <div class="d-flex flex-wrap justify-space-between">
       <div>
-        <v-card-title class="headline" v-text="this.name" />
+        <v-card-title class="headline" v-text="this.name" id="card-name" />
 
         <div class="d-flex">
           <v-card-subtitle v-for="(types, i) in this.pokemon.types" :key="i">

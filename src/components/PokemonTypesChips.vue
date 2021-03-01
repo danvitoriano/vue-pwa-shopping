@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <v-chip class="ma-0" :color="color" text-color="white">
-      {{ this.name }}
+      <span id="chip-name">{{ this.name }}</span>
     </v-chip>
   </div>
 </template>
