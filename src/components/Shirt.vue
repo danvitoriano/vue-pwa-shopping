@@ -1,11 +1,11 @@
 <template>
   <div class="product">
     <div class="product-image">
-      <img :src="selectedImage" title="imagem de apple watch" />
+      <img :src="selectedImage" title="imagem de Camisetas" />
     </div>
 
     <div class="product-info">
-      <h1>Fiap Apple Watch</h1>
+      <h1>Fiap Camisetas</h1>
       <p v-if="inStock">Em estoque</p>
       <p v-else>Indisponível</p>
 
@@ -20,18 +20,24 @@
 
       <h3>Cores</h3>
 
+      <!-- podemos substituir os eventos v-on: pelo @ -->
+      <!-- todos os eventos do javascript no vue são em minusculas com @ -->
       <div
         class="color-box"
-        :style="{ backgroundColor: variant.variantColor }"
+        :style="{
+          backgroundColor: variant.variantBackgrounColor,
+          color: variant.variantTextColor
+        }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
-        v-on:mouseover="setImage(index)"
+        @mouseover="setImage(index)"
         :class="{ selectedBox: index === selectedVariant }"
       >
         <p>{{ variant.variantColor }}</p>
       </div>
 
-      <cep-search v-if="inStock"></cep-search>
+      <!-- mais um componente dentro de um componente! -->
+      <shirt-size></shirt-size>
 
       <button
         :disabled="!inStock"
@@ -58,44 +64,48 @@
 </template>
 
 <script>
-import CepSearch from "./CepSearch.vue";
+import ShirtSize from "./ShirtSize.vue";
 export default {
-  name: "grupo4",
+  components: { ShirtSize },
+  name: "shirt",
   data() {
     return {
-      product: "Apple Watch",
+      product: "Camisetas Coloridas",
       brand: "Fiap",
       inStock: true,
       selectedVariant: 0,
-      selectedImage: require("../assets/apple_watch_01.jpg"), // boa tentativa!
+      selectedImage: require("../assets/white-shirt.jpg"),
       shipping: "Grátis",
       reviews: [],
-      alt: "imagem de apple watch",
-      details: ["bluetooth", "44mm", "GPS"],
+      alt: "imagem de camisetas",
+      details: ["88% algodão", "12% poliéster de garrafa PET"],
       variants: [
         {
-          variantId: 0,
-          variantColor: "black",
-          variantImage: "apple_watch_01.jpg",
-          variantQuantity: 5
+          variantId: 5000,
+          variantColor: "Branco",
+          variantBackgrounColor: "white",
+          variantTextColor: "black",
+          variantImage: "white-shirt.jpg",
+          variantQuantity: 10
         },
         {
-          variantId: 1,
-          variantColor: "white",
-          variantImage: "apple_watch_02.jpg",
-          variantQuantity: 5
+          variantId: 5001,
+          variantColor: "Preto",
+          variantBackgrounColor: "black",
+          variantTextColor: "white",
+          variantImage: "black-shirt.jpg",
+          variantQuantity: 0
         },
         {
-          variantId: 2,
-          variantColor: "pink",
-          variantImage: "apple_watch_03.jpg",
+          variantId: 5002,
+          variantColor: "Vermelho",
+          variantBackgrounColor: "red",
+          variantTextColor: "white",
+          variantImage: "red-shirt.jpg",
           variantQuantity: 10
         }
       ]
     };
-  },
-  components: {
-    "cep-search": CepSearch
   },
   methods: {
     addToCart: function() {
@@ -104,7 +114,7 @@ export default {
     setImage: function(index) {
       this.selectedVariant = index;
       this.selectedImage = require("../assets/" +
-        this.variants[this.selectedVariant].variantImage);
+        this.variants[this.selectedVariant].variantImage); // boa tentativa mas podemos fazer melhor!
     }
   }
 };
@@ -138,21 +148,29 @@ img {
   flex-basis: 700px;
 }
 
+.product-image > img {
+  flex-basis: 700px;
+  border-radius: 30%;
+}
+
 .product-info {
   margin-top: 10px;
   flex-basis: 500px;
 }
 
 .color-box {
-  width: 40px;
+  width: 80px;
   height: 40px;
   margin-top: 5px;
   border-radius: 5px;
+  text-align: center;
 }
+
 .color-box:hover {
   border: 1px solid #000000;
   border-radius: 5px;
 }
+
 .selectedBox {
   border: 2px solid gray;
   border-radius: 5px;

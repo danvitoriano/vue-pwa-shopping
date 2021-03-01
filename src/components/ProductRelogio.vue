@@ -1,11 +1,15 @@
 <template>
   <div class="product">
     <div class="product-image">
-      <img :src="selectedImage" title="imagem de apple watch" />
+      <!-- muito bom a troca de imagem com property bind! mas temos um jeito melhor! -->
+      <img
+        v-bind:src="variants[selectedVariant].variantImage"
+        title="imagem de relógios"
+      />
     </div>
 
     <div class="product-info">
-      <h1>Fiap Apple Watch</h1>
+      <h1>FIAP Relógios de Luxo</h1>
       <p v-if="inStock">Em estoque</p>
       <p v-else>Indisponível</p>
 
@@ -20,26 +24,18 @@
 
       <h3>Cores</h3>
 
+      <!-- o setChange dispara uma função que muda a variant ao clicar! -->
       <div
         class="color-box"
         :style="{ backgroundColor: variant.variantColor }"
         v-for="(variant, index) in variants"
         :key="variant.variantId"
-        v-on:mouseover="setImage(index)"
-        :class="{ selectedBox: index === selectedVariant }"
+        v-on:click="setChange(index)"
       >
         <p>{{ variant.variantColor }}</p>
       </div>
 
-      <cep-search v-if="inStock"></cep-search>
-
-      <button
-        :disabled="!inStock"
-        :class="{ disabledButton: !inStock }"
-        v-on:click="addToCart"
-      >
-        Adicionar ao carrinho
-      </button>
+      <button v-on:click="addToCart">Adicionar ao carrinho</button>
     </div>
 
     <div class="product-review">
@@ -58,53 +54,43 @@
 </template>
 
 <script>
-import CepSearch from "./CepSearch.vue";
 export default {
-  name: "grupo4",
+  name: "product",
   data() {
     return {
-      product: "Apple Watch",
+      product: "Relógios de Luxo",
       brand: "Fiap",
-      inStock: true,
+      inStock: false,
       selectedVariant: 0,
-      selectedImage: require("../assets/apple_watch_01.jpg"), // boa tentativa!
       shipping: "Grátis",
       reviews: [],
-      alt: "imagem de apple watch",
-      details: ["bluetooth", "44mm", "GPS"],
+      alt: "imagem de relógios",
+      details: ["70% gold", "30% silver", "Gender-neutral"],
       variants: [
         {
-          variantId: 0,
-          variantColor: "black",
-          variantImage: "apple_watch_01.jpg",
-          variantQuantity: 5
-        },
-        {
-          variantId: 1,
-          variantColor: "white",
-          variantImage: "apple_watch_02.jpg",
-          variantQuantity: 5
-        },
-        {
-          variantId: 2,
-          variantColor: "pink",
-          variantImage: "apple_watch_03.jpg",
+          variantId: 2234,
+          variantColor: "silver",
+          variantImage:
+            "https://content.rolex.com/dam/2020/showcase/m128239-0005.jpg",
           variantQuantity: 10
+        },
+        {
+          variantId: 2235,
+          variantColor: "black",
+          variantImage:
+            "https://content.rolex.com/dam/2020/showcase/m50509-0016.jpg",
+          variantQuantity: 0
         }
       ]
     };
-  },
-  components: {
-    "cep-search": CepSearch
   },
   methods: {
     addToCart: function() {
       this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId);
     },
-    setImage: function(index) {
+    setChange(index) {
       this.selectedVariant = index;
-      this.selectedImage = require("../assets/" +
-        this.variants[this.selectedVariant].variantImage);
+      this.inStock = this.variants[this.selectedVariant].variantQuantity > 0; // boa tentativa! podemos fazer melhor!
     }
   }
 };
@@ -128,7 +114,7 @@ body {
 }
 
 img {
-  border: 1px solid #d8d8d8;
+  border: 1px solid #e6a4a4;
   width: 70%;
   margin: 40px;
   box-shadow: 0px 0.5px 1px #d8d8d8;
@@ -147,32 +133,24 @@ img {
   width: 40px;
   height: 40px;
   margin-top: 5px;
-  border-radius: 5px;
-}
-.color-box:hover {
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-.selectedBox {
-  border: 2px solid gray;
-  border-radius: 5px;
 }
 
 .cart {
   margin-right: 25px;
   float: right;
-  border: 1px solid #d8d8d8;
+  border: 1px solid #994949;
   padding: 5px 20px;
 }
 
 button {
   margin-top: 30px;
   border: none;
-  background-color: #1e95ea;
+  background-color: #414141;
   color: white;
   height: 40px;
   width: 100px;
   font-size: 14px;
+  border-radius: 10px;
 }
 
 .disabledButton {

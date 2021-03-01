@@ -1,11 +1,15 @@
 <template>
   <div class="product">
+
     <div class="product-image">
-      <img :src="selectedImage" title="imagem de apple watch" />
+      <img
+        src="https://s2.glbimg.com/h0SZiAh2fvXUS454guLFvyfFAYk=/620x350/e.glbimg.com/og/ed/f/original/2019/01/15/tenis.jpg"
+        title="imagem de meias"
+      />
     </div>
 
     <div class="product-info">
-      <h1>Fiap Apple Watch</h1>
+      <h1>Fiap Meias Coloridas</h1>
       <p v-if="inStock">Em estoque</p>
       <p v-else>Indisponível</p>
 
@@ -14,32 +18,24 @@
 
       <ul>
         <li v-for="detail in details" :key="detail">
-          {{ detail }}
+            {{detail}}
         </li>
       </ul>
 
       <h3>Cores</h3>
 
       <div
+      v-on:mouseover="changeVariant"
         class="color-box"
-        :style="{ backgroundColor: variant.variantColor }"
-        v-for="(variant, index) in variants"
+        :style="{backgroundColor: variant.variantColor}"
+        v-for="variant in variants"
         :key="variant.variantId"
-        v-on:mouseover="setImage(index)"
-        :class="{ selectedBox: index === selectedVariant }"
       >
-        <p>{{ variant.variantColor }}</p>
+        <p>{{variant.variantColor}}</p>
       </div>
 
-      <cep-search v-if="inStock"></cep-search>
-
-      <button
-        :disabled="!inStock"
-        :class="{ disabledButton: !inStock }"
-        v-on:click="addToCart"
-      >
-        Adicionar ao carrinho
-      </button>
+      <button v-on:click="addToCart">Adicionar ao carrinho</button>
+      
     </div>
 
     <div class="product-review">
@@ -58,54 +54,45 @@
 </template>
 
 <script>
-import CepSearch from "./CepSearch.vue";
 export default {
-  name: "grupo4",
+  name: "product",
   data() {
     return {
-      product: "Apple Watch",
+      product: "Meias Coloridas",
       brand: "Fiap",
-      inStock: true,
+      inStock: false,
       selectedVariant: 0,
-      selectedImage: require("../assets/apple_watch_01.jpg"), // boa tentativa!
       shipping: "Grátis",
       reviews: [],
-      alt: "imagem de apple watch",
-      details: ["bluetooth", "44mm", "GPS"],
+      alt: "imagem de meias",
+      details: ["80% cotton", "20% polyester", "Gender-neutral"],
       variants: [
         {
-          variantId: 0,
-          variantColor: "black",
-          variantImage: "apple_watch_01.jpg",
-          variantQuantity: 5
-        },
-        {
-          variantId: 1,
-          variantColor: "white",
-          variantImage: "apple_watch_02.jpg",
-          variantQuantity: 5
-        },
-        {
-          variantId: 2,
-          variantColor: "pink",
-          variantImage: "apple_watch_03.jpg",
+          variantId: 2234,
+          variantColor: "green",
+          variantImage:
+            "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
           variantQuantity: 10
+        },
+        {
+          variantId: 2235,
+          variantColor: "blue",
+          variantImage:
+            "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
+          variantQuantity: 0
         }
       ]
     };
   },
-  components: {
-    "cep-search": CepSearch
-  },
   methods: {
-    addToCart: function() {
-      this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId);
-    },
-    setImage: function(index) {
-      this.selectedVariant = index;
-      this.selectedImage = require("../assets/" +
-        this.variants[this.selectedVariant].variantImage);
-    }
+      addToCart: function() {
+          console.log("ddd")
+          this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
+      },
+      changeVariant: function() {
+          this.$emit("change-variant", this.variants[this.selectedVariant].variantId)
+      }
+      
   }
 };
 </script>
@@ -115,6 +102,10 @@ body {
   font-family: tahoma;
   color: #282828;
   margin: 0px;
+}
+
+h1 {
+  color: #1a6801;
 }
 
 .nav-bar {
@@ -147,15 +138,6 @@ img {
   width: 40px;
   height: 40px;
   margin-top: 5px;
-  border-radius: 5px;
-}
-.color-box:hover {
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-.selectedBox {
-  border: 2px solid gray;
-  border-radius: 5px;
 }
 
 .cart {
@@ -168,7 +150,7 @@ img {
 button {
   margin-top: 30px;
   border: none;
-  background-color: #1e95ea;
+  background-color: #c26e00;
   color: white;
   height: 40px;
   width: 100px;
