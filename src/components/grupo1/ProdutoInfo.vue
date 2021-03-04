@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div id="idDiv-Teste" class="text-center">
     <h2>Informações do Produto</h2>
     <p>Vários detalhes...</p>
     <p>
@@ -8,9 +8,9 @@
     <p>
       Marca: <strong>{{ brand }}</strong>
     </p>
-    <v-bottom-sheet v-model="sheet" persistent>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="green" dark v-bind="attrs" v-on="on">
+    <v-bottom-sheet id="idForm-Teste" v-model="sheet" persistent>
+      <template id="idTemplate-Teste" v-slot:activator="{ on, attrs }">
+        <v-btn id="idBtnReserva-test" color="green" dark v-bind="attrs" v-on="on">
           Reservar
         </v-btn>
       </template>
