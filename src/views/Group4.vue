@@ -16,7 +16,7 @@
       <template v-slot:top>
         <v-dialog v-model="dialog" persistent max-width="415px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on">
+            <v-btn color="primary" id="btn-add" dark v-bind="attrs" v-on="on">
               Add User
             </v-btn>
           </template>
@@ -37,10 +37,10 @@
         </v-icon>
       </template>
     </v-data-table>
-    <v-alert v-if="showSuccess" type="success">
+    <v-alert v-if="showSuccess" type="success" id="msg-success">
       Your request was finished successfully.
     </v-alert>
-    <v-alert v-if="showError" type="success">
+    <v-alert v-if="showError" type="success" id="msg-error">
       Internal server error.
     </v-alert>
   </v-card>
@@ -48,7 +48,7 @@
 
 <script>
 import axios from "axios";
-import UserModal from "./UserModal.vue";
+import UserModal from "../components/UserModal";
 export default {
   name: "Group4",
   watch: {

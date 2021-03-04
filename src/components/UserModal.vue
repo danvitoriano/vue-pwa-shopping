@@ -47,6 +47,7 @@
           </div>
           <v-btn
             class="mr-4"
+            id="btn-submit"
             @click="onSubmit"
             value="Submit"
             :disabled="!valid"
