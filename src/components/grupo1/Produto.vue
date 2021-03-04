@@ -6,7 +6,7 @@
       Produto: <strong> {{ product }} </strong>
     </p>
     <p>
-      Quantidade: <strong> {{ getQte }} </strong>
+      Quantidade: <strong id="idQte"> {{ getQte }} </strong>
       Cor: <strong> {{ getColor }} </strong>
     </p>
     <p>
@@ -16,7 +16,7 @@
     <hr />
     <div class="componentes">
       <ProdutoInfo :product="product" :brand="brand" />
-      <Carousel :variants="variants" @change="SettingQteAndColor"/>
+      <Carousel id="Grupo1Carousel" :variants="variants" @change="SettingQteAndColor"/>
       <!-- <app-usuario-editar :idade="idade" /> -->
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
           variantId: 2266,
           variantColor: "Black",
           variantImage: "AppleWatchGrupoDeme02.jpeg",
-          variantQuantity: 2000,
+          variantQuantity: 5,
         },
         {
           variantId: 2267,
