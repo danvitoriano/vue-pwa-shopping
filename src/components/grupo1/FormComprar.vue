@@ -1,29 +1,29 @@
 <template>
-  <v-form v-model="valid">
-    <v-container>
-      <v-row>
-        <v-col cols="12" md="4">
-          <v-text-field
+  <v-form id="idForm-T1" v-model="valid">
+    <v-container id="idForm-T2">
+      <v-row id="idForm-T3">
+        <v-col id="idForm-T4" cols="12" md="4">
+          <v-text-field id="idPrimeiroNome"
             v-model="firstname"
             :rules="nameRules"
             :counter="10"
-            label="First name"
+            label="Primeiro Nome"
             required
           ></v-text-field>
         </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
+        <v-col id="idForm-T5" cols="12" md="4">
+          <v-text-field id="idUtimoNome"
             v-model="lastname"
             :rules="nameRules"
             :counter="10"
-            label="Last name"
+            label="Ultimo Nome"
             required
           ></v-text-field>
         </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
+        <v-col id="idForm-T6" cols="12" md="4">
+          <v-text-field id="idEmail"
             v-model="email"
             :rules="emailRules"
             label="E-mail"
@@ -31,9 +31,9 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col cols="8" md="2">
-          <v-text-field
+      <v-row id="idForm-T31">
+        <v-col id="idForm-T41" cols="8" md="2">
+          <v-text-field id="idCep"
             v-model="cep"
             label="CEP"
             :counter="8"
@@ -68,7 +68,7 @@
       <v-btn class="mt-6" text color="green" @click="validateForm">
         Concluir
       </v-btn>
-      <v-btn class="mt-6" text color="red" @click="cancelarForm">
+      <v-btn id="idForm-T21"  class="mt-6" text color="red" @click="cancelarForm">
         Cancelar
       </v-btn>
     </v-container>
