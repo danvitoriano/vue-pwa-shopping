@@ -4,6 +4,7 @@ import Shopping from "../views/Shopping.vue";
 import Grupo3 from "../views/Grupo3.vue";
 import Produto from '../views/grupo1/WatchScreen.vue'
 import Grupo2 from "../views/Grupo2.vue";
+import News from "../views/News.vue";
 
 // 1. Use Vue Router
 Vue.use(VueRouter);
@@ -53,6 +54,11 @@ const routes = [
     path: "/grupo2",
     name: "Grupo2",
     component: Grupo2
+  },
+  {
+    path: "/news",
+    name: "News",
+    component: News
   }
 ];
 
