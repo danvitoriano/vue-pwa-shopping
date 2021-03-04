@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Shopping from "../views/Shopping.vue";
 import Grupo3 from "../views/Grupo3.vue";
 import Produto from '../views/grupo1/WatchScreen.vue'
+import Grupo2 from "../views/Grupo2.vue";
 
 // 1. Use Vue Router
 Vue.use(VueRouter);
@@ -47,6 +48,11 @@ const routes = [
     path: "/group4",
     name: "Group 4",
     component: () => import("../views/Group4.vue")
+  },
+  {
+    path: "/grupo2",
+    name: "Grupo2",
+    component: Grupo2
   }
 ];
 
