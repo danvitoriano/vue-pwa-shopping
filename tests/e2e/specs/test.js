@@ -29,6 +29,5 @@ describe("My First Test", () => {
     cy.get("#idQte").then(function($elem) {
       cy.log($elem.text())
     })
-
   });
 });

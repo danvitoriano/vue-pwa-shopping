@@ -1,7 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Shopping from "../views/Shopping.vue";
+import Grupo3 from "../views/Grupo3.vue";
 import Produto from '../views/grupo1/WatchScreen.vue'
+import Grupo2 from "../views/Grupo2.vue";
+import News from "../views/News.vue";
 
 // 1. Use Vue Router
 Vue.use(VueRouter);
@@ -38,9 +41,24 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
+    path: "/grupo3",
+    name: "Grupo3",
+    component: Grupo3
+  },
+  {
     path: "/group4",
     name: "Group 4",
     component: () => import("../views/Group4.vue")
+  },
+  {
+    path: "/grupo2",
+    name: "Grupo2",
+    component: Grupo2
+  },
+  {
+    path: "/news",
+    name: "News",
+    component: News
   }
 ];
 
