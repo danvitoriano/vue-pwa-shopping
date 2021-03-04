@@ -20,6 +20,13 @@
         <span class="mr-2">Group 4</span>
         <v-icon>mdi-border-all</v-icon>
       </v-btn>
+      <v-btn
+        to="/grupo2"
+        text
+      >
+        <span class="mr-2">Grupo 2</span>
+        <v-icon>mdi-account-cowboy-hat</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -27,4 +34,3 @@
     </v-main>
   </v-app>
 </template>
-
