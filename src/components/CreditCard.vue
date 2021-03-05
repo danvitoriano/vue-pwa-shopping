@@ -21,6 +21,7 @@
         @submit.prevent="saveData"
       >
         <v-text-field
+          id="cardNumber"
           v-model="valueFields.cardNumber"
           :rules="cardNumberRules"
           v-mask="'#### #### #### ####'"
@@ -29,6 +30,7 @@
         ></v-text-field>
 
         <v-text-field
+          id="cardName"
           v-model="valueFields.cardName"
           :rules="valueFieldNameRules"
           label="Nome no Cartão"
@@ -37,6 +39,7 @@
         ></v-text-field>
 
         <v-text-field
+          id="cardExpirationDate"
           v-model="date"
           :rules="cardDateRules"
           v-mask="'##/####'"
@@ -53,6 +56,7 @@
         ></v-text-field>
 
         <v-btn
+          id="saveCard"
           block
           type="submit"
           color="success"
@@ -147,12 +151,12 @@ export default {
     },
   },
   watch: {
-    date: function (value) {
+    date: function(value) {
       const date = value.split("/");
       this.valueFields.cardMonth = date[0];
       this.valueFields.cardYear = date[1];
     },
-    "valueFields.cardName": function (value) {
+    "valueFields.cardName": function(value) {
       this.valueFields.cardName = value.match(/^[0-9]*$/) ? "" : value;
     },
   },
