@@ -16,35 +16,41 @@
         @submit.prevent="calculateImc"
       >
         <v-text-field
+          id="personName"
           v-model="valueFields.personName"
           label="Seu nome"
         ></v-text-field>
 
         <v-text-field
+          id="personAge"
           v-model="valueFields.personAge"
           label="Idade"
           required
         ></v-text-field>
 
         <v-text-field
+          id="personHeight"
           v-model="valueFields.personHeight"
           label="Altura (cm)"
           required
         ></v-text-field>
 
         <v-text-field
+          id="personWeight"
           v-model="valueFields.personWeight"
           label="Peso (kg)"
           required
         ></v-text-field>
 
         <v-text-field
+          id="personActivityLevel"
           v-model="valueFields.personActivityLevel"
           label="Nível de atividade física"
         ></v-text-field>
 
         <v-btn
           block
+          id="calculateIMC"
           type="submit"
           color="success"
           class="mr-4"
