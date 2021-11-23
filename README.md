@@ -1,5 +1,7 @@
 # vue-pwa-shopping
 
+![image](https://raw.githubusercontent.com/danvitoriano/vue-pwa-shopping/master/screenshot-5z9qg.csb.app-2021.11.23-20_27_39.png)
+
 ## Project setup
 ```
 npm install
