@@ -1,6 +1,6 @@
 # vue-pwa-shopping
 
-version 0.1.1
+version 0.1.2
 
 ![image](https://raw.githubusercontent.com/danvitoriano/vue-pwa-shopping/master/screenshot-5z9qg.csb.app-2021.11.23-20_27_39.png)
 
